@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { userService } from "./service";
 import User from "./model";
 
+
 const { getUser, getUsers, createUser, loginUser } = userService;
 
 class UserController {
@@ -25,6 +26,8 @@ class UserController {
   async createUser(req: Request, res: Response) {
     try {
       const user = await createUser(req.body);
+      console.log(user);
+      
       return res.status(201).json(user);
     } catch (error) {
       return res.status(400).json({ error: (error as Error).message });

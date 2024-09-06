@@ -8,7 +8,8 @@ export default async function dbConnect() {
     return;
   }
   try {
-    const mongodbUri = process.env.MONGODB_URI ?? "";
+    const mongodbUri = process.env.mongodbUri!;
+    const jwtSecret = process.env.JWT_SECRET || "default_secret_key";
     await mongoose.connect(mongodbUri);
     console.log("DB Connected");
   } catch (error) {

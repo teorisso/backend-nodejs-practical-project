@@ -4,6 +4,7 @@ import { compare } from "bcrypt";
 import { sign } from "jsonwebtoken";
 import { config } from "dotenv";
 
+
 config();
 
 const {
@@ -64,6 +65,24 @@ class UserService {
       return token;
     } catch (error) {
       throw new Error((error as Error).message);
+    }
+  }
+
+  async editUser(id: string, user: IUser) {
+    try {
+      const editedUser = await editUser(id, user);
+      return editedUser;
+    } catch (error) {
+      throw Error((error as Error).message);
+    }
+  }
+  
+  async deleteUser(id: string) {
+    try {
+      const deletedUser = await deleteUser(id);
+      return deletedUser;
+    } catch (error) {
+      throw Error((error as Error).message);
     }
   }
 }
